@@ -745,7 +745,16 @@
 "use client";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
-
+export function generateStaticParams() {
+    return [
+        { slug: "hashmap" },
+        { slug: "sliding-window" },
+        { slug: "two-pointers" },
+        { slug: "binary-search" },
+        { slug: "linked-list" },
+        { slug: "dynamic-programming" },
+    ];
+}
 const font = "Inter, 'Segoe UI', system-ui, -apple-system, sans-serif";
 
 const difficultyStyle: Record<string, { color: string; bg: string; border: string }> = {
