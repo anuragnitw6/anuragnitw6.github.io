@@ -822,11 +822,11 @@ function groupAnagrams(strs: string[]): string[][] {
   return Array.from(map.values());
 }`,
         problems: [
-            { name: "Two Sum", difficulty: "Easy", link: "https://leetcode.com/problems/two-sum" },
-            { name: "Group Anagrams", difficulty: "Medium", link: "https://leetcode.com/problems/group-anagrams" },
-            { name: "Top K Frequent Elements", difficulty: "Medium", link: "https://leetcode.com/problems/top-k-frequent-elements" },
-            { name: "Valid Anagram", difficulty: "Easy", link: "https://leetcode.com/problems/valid-anagram" },
-            { name: "Longest Consecutive Sequence", difficulty: "Medium", link: "https://leetcode.com/problems/longest-consecutive-sequence" },
+            { name: "Two Sum", difficulty: "Easy", link: "/problems/two-sum" },
+            { name: "Group Anagrams", difficulty: "Medium", link: "/problems/group-anagrams" },
+            { name: "Top K Frequent Elements", difficulty: "Medium", link: "/problems/top-k-frequent-elements" },
+            { name: "Valid Anagram", difficulty: "Easy", link: "/problems/valid-anagram" },
+            { name: "Longest Consecutive Sequence", difficulty: "Medium", link: "/problems/longest-consecutive-sequence" },
         ],
         notes: "Key insight: whenever you see 'find two elements that sum to X', think HashMap. Store what you've seen so far, look up the complement.",
     },
@@ -1142,13 +1142,13 @@ function longestCommonSubsequence(text1: string, text2: string): number {
 type Tab = "theory" | "code" | "problems" | "notes";
 
 const tabs: { id: Tab; label: string; emoji: string }[] = [
-    { id: "theory", label: "Theory", emoji: "📖" },
-    { id: "code", label: "Code", emoji: "💻" },
-    { id: "problems", label: "Problems", emoji: "🧩" },
-    { id: "notes", label: "My Notes", emoji: "📝" },
+    { id: "theory", label: "Theory", emoji: "" },
+    { id: "code", label: "Code", emoji: "" },
+    { id: "problems", label: "Problems", emoji: "" },
+    // { id: "notes", label: "My Notes", emoji: "" },
 ];
-
 export default function PatternDetailPage({ slug }: { slug: string }) {
+    // export default function PatternDetailPage({ slug }: { slug: string }) {
     const router = useRouter();
     const [activeTab, setActiveTab] = useState<Tab>("theory");
     const [copied, setCopied] = useState(false);
