@@ -24,8 +24,8 @@ export default function Navbar() {
                     {[
                         { href: "/patterns", label: "Patterns" },
                         { href: "/problems", label: "Problems" },
-                        { href: "/blogs", label: "Blogs" },
-                        { href: "/about", label: "About" },
+                        // { href: "/blogs", label: "Blogs" },
+                        // { href: "/about", label: "About" },
                     ].map(({ href, label }) => (
                         <Link key={href} href={href} style={{
                             fontSize: "14px", fontWeight: 500,

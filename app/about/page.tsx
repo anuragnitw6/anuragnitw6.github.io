@@ -239,7 +239,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* Achievement */}
-                <section>
+                {/* <section>
                     <h2 style={{ fontSize: "13px", fontWeight: 600, color: "#a1a1aa", textTransform: "uppercase", letterSpacing: "0.07em", margin: "0 0 14px", fontFamily: font }}>
                         Achievement
                     </h2>
@@ -252,7 +252,7 @@ export default function AboutPage() {
                             🏆 Ranked 1st in Rajasthan for MCA entrance examination
                         </p>
                     </div>
-                </section>
+                </section> */}
 
             </div>
         </main>

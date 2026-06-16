@@ -883,10 +883,10 @@ function lengthOfLongestSubstring(s: string): number {
   return max;
 }`,
         problems: [
-            { name: "Maximum Average Subarray I", difficulty: "Easy", link: "https://leetcode.com/problems/maximum-average-subarray-i" },
-            { name: "Longest Substring Without Repeating Characters", difficulty: "Medium", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters" },
-            { name: "Minimum Window Substring", difficulty: "Hard", link: "https://leetcode.com/problems/minimum-window-substring" },
-            { name: "Permutation in String", difficulty: "Medium", link: "https://leetcode.com/problems/permutation-in-string" },
+            { name: "Maximum Average Subarray I", difficulty: "Easy", link: "/problems/maximum-average-subarray-1" },
+            { name: "Longest Substring Without Repeating Characters", difficulty: "Medium", link: "/problems/longest-substring-without-repeating-characters" },
+            { name: "Minimum Window Substring", difficulty: "Hard", link: "/problems/minimum-window-substring" },
+            { name: "Permutation in String", difficulty: "Medium", link: "/problems/permutation-in-string" },
         ],
         notes: "Two pointers left/right define the window. Expand right always; shrink from left when the window violates the condition.",
     },
@@ -938,10 +938,10 @@ function isPalindrome(s: string): boolean {
   return true;
 }`,
         problems: [
-            { name: "Two Sum II", difficulty: "Medium", link: "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted" },
-            { name: "Valid Palindrome", difficulty: "Easy", link: "https://leetcode.com/problems/valid-palindrome" },
-            { name: "3Sum", difficulty: "Medium", link: "https://leetcode.com/problems/3sum" },
-            { name: "Container With Most Water", difficulty: "Medium", link: "https://leetcode.com/problems/container-with-most-water" },
+            { name: "Two Sum II", difficulty: "Medium", link: "/problems/two-sum-ii-input-array-is-sorted" },
+            { name: "Valid Palindrome", difficulty: "Easy", link: "/problems/valid-palindrome" },
+            { name: "3Sum", difficulty: "Medium", link: "/problems/3sum" },
+            { name: "Container With Most Water", difficulty: "Medium", link: "/problems/container-with-most-water" },
         ],
         notes: "If sum too small → move left pointer right. If sum too large → move right pointer left. Simple and powerful.",
     },
@@ -1002,11 +1002,11 @@ function shipWithinDays(weights: number[], days: number): number {
   return left;
 }`,
         problems: [
-            { name: "Binary Search", difficulty: "Easy", link: "https://leetcode.com/problems/binary-search" },
-            { name: "Find Minimum in Rotated Sorted Array", difficulty: "Medium", link: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array" },
-            { name: "Koko Eating Bananas", difficulty: "Medium", link: "https://leetcode.com/problems/koko-eating-bananas" },
-            { name: "Capacity To Ship Packages", difficulty: "Medium", link: "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days" },
-            { name: "Median of Two Sorted Arrays", difficulty: "Hard", link: "https://leetcode.com/problems/median-of-two-sorted-arrays" },
+            { name: "Binary Search", difficulty: "Easy", link: "/problems/binary-search" },
+            { name: "Find Minimum in Rotated Sorted Array", difficulty: "Medium", link: "/problems/find-minimum-in-rotated-sorted-array" },
+            // { name: "Koko Eating Bananas", difficulty: "Medium", link: "https://leetcode.com/problems/koko-eating-bananas" },
+            // { name: "Capacity To Ship Packages", difficulty: "Medium", link: "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days" },
+            { name: "Median of Two Sorted Arrays", difficulty: "Hard", link: "/problems/median-of-two-sorted-arrays" },
         ],
         notes: "Template: left=min, right=max, shrink toward the answer. Use left < right (not <=) when searching for a boundary.",
     },
@@ -1032,42 +1032,42 @@ function shipWithinDays(weights: number[], days: number): number {
         timeComplexity: "O(n) for most operations",
         spaceComplexity: "O(1) iterative, O(n) recursive",
         code: `// Reverse a linked list
-function reverseList(head: ListNode | null): ListNode | null {
-  let prev: ListNode | null = null;
-  let curr = head;
+    function reverseList(head: ListNode | null): ListNode | null {
+      let prev: ListNode | null = null;
+      let curr = head;
 
-  while (curr) {
-    const next = curr.next;
-    curr.next = prev;
-    prev = curr;
-    curr = next;
-  }
+      while (curr) {
+        const next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+      }
 
-  return prev;
-}
+      return prev;
+    }
 
-// Detect cycle — Floyd's algorithm
-function hasCycle(head: ListNode | null): boolean {
-  let slow = head, fast = head;
+    // Detect cycle — Floyd's algorithm
+    function hasCycle(head: ListNode | null): boolean {
+      let slow = head, fast = head;
 
-  while (fast && fast.next) {
-    slow = slow!.next;
-    fast = fast.next.next;
-    if (slow === fast) return true;
-  }
+      while (fast && fast.next) {
+        slow = slow!.next;
+        fast = fast.next.next;
+        if (slow === fast) return true;
+      }
 
-  return false;
-}
+      return false;
+    }
 
-// Find middle
-function middleNode(head: ListNode): ListNode {
-  let slow = head, fast = head;
-  while (fast.next && fast.next.next) {
-    slow = slow.next!;
-    fast = fast.next.next;
-  }
-  return slow;
-}`,
+    // Find middle
+    function middleNode(head: ListNode): ListNode {
+      let slow = head, fast = head;
+      while (fast.next && fast.next.next) {
+        slow = slow.next!;
+        fast = fast.next.next;
+      }
+      return slow;
+    }`,
         problems: [
             { name: "Reverse Linked List", difficulty: "Easy", link: "https://leetcode.com/problems/reverse-linked-list" },
             { name: "Linked List Cycle", difficulty: "Easy", link: "https://leetcode.com/problems/linked-list-cycle" },
@@ -1098,36 +1098,36 @@ function middleNode(head: ListNode): ListNode {
         timeComplexity: "O(n) to O(n²) depending on state space",
         spaceComplexity: "O(n) to O(n²) for the dp table",
         code: `// Climbing Stairs — 1D DP
-function climbStairs(n: number): number {
-  if (n <= 2) return n;
-  let prev2 = 1, prev1 = 2;
+    function climbStairs(n: number): number {
+      if (n <= 2) return n;
+      let prev2 = 1, prev1 = 2;
 
-  for (let i = 3; i <= n; i++) {
-    const curr = prev1 + prev2;
-    prev2 = prev1;
-    prev1 = curr;
-  }
-
-  return prev1;
-}
-
-// Longest Common Subsequence — 2D DP
-function longestCommonSubsequence(text1: string, text2: string): number {
-  const m = text1.length, n = text2.length;
-  const dp: number[][] = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
-
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      if (text1[i - 1] === text2[j - 1]) {
-        dp[i][j] = dp[i - 1][j - 1] + 1;
-      } else {
-        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+      for (let i = 3; i <= n; i++) {
+        const curr = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = curr;
       }
-    }
-  }
 
-  return dp[m][n];
-}`,
+      return prev1;
+    }
+
+    // Longest Common Subsequence — 2D DP
+    function longestCommonSubsequence(text1: string, text2: string): number {
+      const m = text1.length, n = text2.length;
+      const dp: number[][] = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          if (text1[i - 1] === text2[j - 1]) {
+            dp[i][j] = dp[i - 1][j - 1] + 1;
+          } else {
+            dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+          }
+        }
+      }
+
+      return dp[m][n];
+    }`,
         problems: [
             { name: "Climbing Stairs", difficulty: "Easy", link: "https://leetcode.com/problems/climbing-stairs" },
             { name: "House Robber", difficulty: "Medium", link: "https://leetcode.com/problems/house-robber" },

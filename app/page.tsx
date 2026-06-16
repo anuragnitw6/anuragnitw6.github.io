@@ -249,10 +249,10 @@ const font = "Inter, 'Segoe UI', system-ui, -apple-system, sans-serif";
 
 const patterns = [
   { slug: "hashmap", name: "HashMap", desc: "Fast O(1) lookups using key-value pairs to avoid nested loops.", tag: "Array", difficulty: "Easy" },
-  { slug: "linked-list", name: "Linked List", desc: "Node-based pointer manipulation — reversal, cycle detection, merging.", tag: "List", difficulty: "Medium" },
+  // { slug: "linked-list", name: "Linked List", desc: "Node-based pointer manipulation — reversal, cycle detection, merging.", tag: "List", difficulty: "Medium" },
   { slug: "sliding-window", name: "Sliding Window", desc: "Maintain a window over a sequence to find subarrays efficiently.", tag: "Array", difficulty: "Medium" },
   { slug: "binary-search", name: "Binary Search", desc: "Halve the search space each step for O(log n) time complexity.", tag: "Search", difficulty: "Medium" },
-  { slug: "palindrome", name: "Palindrome", desc: "Two-pointer symmetry checking pattern for strings.", tag: "String", difficulty: "Easy" },
+  // { slug: "palindrome", name: "Palindrome", desc: "Two-pointer symmetry checking pattern for strings.", tag: "String", difficulty: "Easy" },
 ];
 
 const problems = [
@@ -264,9 +264,9 @@ const problems = [
 ];
 
 const stats = [
-  { label: "Problems Solved", value: "5", icon: "#" },
-  { label: "Patterns Learned", value: "5", icon: "#" },
-  { label: "Personal Notes", value: "100%", icon: "%" },
+  { label: "Problems Solved", value: "16", icon: "#" },
+  { label: "Patterns Learned", value: "4", icon: "#" },
+  // { label: "Personal Notes", value: "100%", icon: "%" },
 ];
 
 const difficultyStyle: Record<string, { color: string; bg: string; border: string }> = {
@@ -325,12 +325,14 @@ export default function Home() {
             }}>
             Explore Patterns →
           </button>
-          <button style={{
-            padding: "10px 22px", borderRadius: "8px",
-            border: "1px solid #e4e4e7", background: "#fff", color: "#3f3f46",
-            fontSize: "14px", fontWeight: 500, cursor: "pointer",
-            fontFamily: font,
-          }}>
+          <button
+            onClick={() => router.push("/problems")}
+            style={{
+              padding: "10px 22px", borderRadius: "8px",
+              border: "1px solid #e4e4e7", background: "#fff", color: "#3f3f46",
+              fontSize: "14px", fontWeight: 500, cursor: "pointer",
+              fontFamily: font,
+            }}>
             View Problems
           </button>
         </div>

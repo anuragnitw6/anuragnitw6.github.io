@@ -232,22 +232,22 @@ const patterns = [
         problems: 20,
         desc: "Halve the search space each step for O(log n) time complexity.",
     },
-    {
-        slug: "linked-list",
-        name: "Linked List",
-        tag: "List",
-        difficulty: "Medium",
-        problems: 14,
-        desc: "Node-based pointer manipulation — reversal, cycle detection, merging.",
-    },
-    {
-        slug: "dynamic-programming",
-        name: "Dynamic Programming",
-        tag: "DP",
-        difficulty: "Hard",
-        problems: 30,
-        desc: "Break problems into overlapping subproblems and cache results.",
-    },
+    // {
+    //     slug: "linked-list",
+    //     name: "Linked List",
+    //     tag: "List",
+    //     difficulty: "Medium",
+    //     problems: 14,
+    //     desc: "Node-based pointer manipulation — reversal, cycle detection, merging.",
+    // },
+    // {
+    //     slug: "dynamic-programming",
+    //     name: "Dynamic Programming",
+    //     tag: "DP",
+    //     difficulty: "Hard",
+    //     problems: 30,
+    //     desc: "Break problems into overlapping subproblems and cache results.",
+    // },
 ];
 
 const difficultyStyle: Record<string, { color: string; bg: string; border: string }> = {
