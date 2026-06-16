@@ -9,6 +9,9 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata: Metadata = {
   title: "DSA Patterns",
   description: "Learn patterns, not problems.",
+  verification: {
+    google: "8hIsOD-AmUhkKg--v4zst-EJX2hBkONHBmi9CDPEXm0"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
