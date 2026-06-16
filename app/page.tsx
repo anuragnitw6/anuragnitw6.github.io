@@ -256,11 +256,11 @@ const patterns = [
 ];
 
 const problems = [
-  { name: "Two Sum", difficulty: "Easy", color: "#16a34a" },
-  { name: "Add Two Numbers", difficulty: "Medium", color: "#d97706" },
-  { name: "Longest Substring Without Repeating Characters", difficulty: "Medium", color: "#d97706" },
-  { name: "Median of Two Sorted Arrays", difficulty: "Hard", color: "#dc2626" },
-  { name: "Longest Palindromic Substring", difficulty: "Medium", color: "#d97706" },
+  { name: "Two Sum", difficulty: "Easy", color: "#16a34a", slug: "/problems/two-sum", internal: true },
+  { name: "Group Anagrams", difficulty: "Medium", color: "#d97706", slug: "/problems/group-anagrams", internal: true },
+  { name: "Longest Substring Without Repeating Characters", difficulty: "Medium", color: "#d97706", slug: "/problems/longest-substring-without-repeating-characters", internal: false },
+  { name: "Median of Two Sorted Arrays", difficulty: "Hard", color: "#dc2626", slug: "https://leetcode.com/problems/median-of-two-sorted-arrays", internal: false },
+  { name: "Valid Anagram", difficulty: "Easy", color: "#16a34a", slug: "/problems/valid-anagram", internal: true },
 ];
 
 const stats = [
@@ -469,13 +469,22 @@ export default function Home() {
               Recently Solved
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              {problems.map(({ name, difficulty, color }, i) => (
-                <div key={name} style={{
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  padding: "14px 18px", borderRadius: "10px",
-                  border: "1px solid #e4e4e7", background: "#fff",
-                  cursor: "pointer", transition: "all 0.15s",
-                }}
+              {problems.map(({ name, difficulty, color, slug, internal }, i) => (
+                <div
+                  key={name}
+                  onClick={() => {
+                    if (internal) {
+                      router.push(slug);
+                    } else {
+                      window.open(slug, "_blank");
+                    }
+                  }}
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                    padding: "14px 18px", borderRadius: "10px",
+                    border: "1px solid #e4e4e7", background: "#fff",
+                    cursor: "pointer", transition: "all 0.15s",
+                  }}
                   onMouseEnter={e => {
                     (e.currentTarget as HTMLDivElement).style.borderColor = "#a1a1aa";
                     (e.currentTarget as HTMLDivElement).style.background = "#fafafa";
@@ -507,7 +516,10 @@ export default function Home() {
                   </span>
                 </div>
               ))}
+
             </div>
+
+
           </>
         )}
       </section>
