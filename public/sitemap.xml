@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://anuragnitw6.github.io/</loc>
+  </url>
+
+  <url>
+    <loc>https://anuragnitw6.github.io/patterns</loc>
+  </url>
+
+  <url>
+    <loc>https://anuragnitw6.github.io/about</loc>
+  </url>
+
+  <url>
+    <loc>https://anuragnitw6.github.io/problems/two-sum</loc>
+  </url>
+
+  <url>
+    <loc>https://anuragnitw6.github.io/problems/group-anagrams</loc>
+  </url>
+
+  <url>
+    <loc>https://anuragnitw6.github.io/problems/valid-anagram</loc>
+  </url>
+
+  <url>
+    <loc>https://anuragnitw6.github.io/problems/top-k-frequent-elements</loc>
+  </url>
+
+  <url>
+    <loc>https://anuragnitw6.github.io/problems/longest-consecutive-sequence</loc>
+  </url>
+
+</urlset>
