@@ -51,6 +51,7 @@ const problems: Problem[] = [
     { id: 14, name: "Binary Search", slug: "binary-search", pattern: "Binary Search", difficulty: "Easy", leetcode: "/problems/binary-search", tag: "Search", hasPage: false },
     { id: 15, name: "Find Minimum in Rotated Sorted Array", slug: "find-minimum-in-rotated-sorted-array", pattern: "Binary Search", difficulty: "Medium", leetcode: "/problems/find-minimum-in-rotated-sorted-array", tag: "Search", hasPage: false },
     { id: 16, name: "Median of Two Sorted Arrays", slug: "median-of-two-sorted-arrays", pattern: "Binary Search", difficulty: "Hard", leetcode: "/problems/median-of-two-sorted-arrays", tag: "Search", hasPage: false },
+    { id: 17, name: "Majority Element", slug: "majority-element", pattern: "HashMap", difficulty: "Easy", leetcode: "/problems/majority-element", tag: "Array", hasPage: false },
     // Linked List
     // { id: 206, name: "Reverse Linked List", slug: "reverse-linked-list", pattern: "Linked List", difficulty: "Easy", leetcode: "https://leetcode.com/problems/reverse-linked-list", tag: "List", hasPage: false },
     // { id: 141, name: "Linked List Cycle", slug: "linked-list-cycle", pattern: "Linked List", difficulty: "Easy", leetcode: "https://leetcode.com/problems/linked-list-cycle", tag: "List", hasPage: false },
