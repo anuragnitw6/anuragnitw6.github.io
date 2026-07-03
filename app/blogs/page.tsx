@@ -1,281 +1,146 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import Link from "next/link";
+import { blogData } from "./blogsData";
 
 const font = "Inter, 'Segoe UI', system-ui, -apple-system, sans-serif";
 
-const sections = [
-    {
-        title: "What Is a Parity Permutation",
-        content: "A parity permutation is just a rearrangement of an array so that elements alternate by parity — even, odd, even, odd — or so all evens land at even indices and all odds land at odd indices. It shows up under different names (\"Sort Array By Parity II\", \"wiggle by parity\", \"segregate evens and odds\") but it's always the same idea: partition or interleave a sequence based on a two-way split condition.",
-    },
-    {
-        title: "Pattern Recognition",
-        bullets: [
-            "You need to reorder elements based on a binary condition (even/odd, positive/negative, 0s/1s)",
-            "The output only cares about relative grouping or alternation — not sorted order",
-            "You're asked to do it in-place with O(1) extra space",
-            "A brute-force split-then-merge solution feels wasteful (extra arrays, extra passes)",
-        ],
-    },
-    {
-        title: "Core Insight",
-        content: "Instead of building two new arrays (one for evens, one for odds) and merging them, walk the array with two pointers that each hunt for a value in the \"wrong\" slot, then swap:",
-        code: "if (nums[i] is even but sits in an odd slot) swap it with nums[j], an odd value sitting in an even slot",
-        after: "Every swap fixes two elements at once, so the whole array is corrected in a single pass with no extra memory.",
-    },
-    {
-        title: "Step-by-Step Walkthrough",
-        walkthrough: {
-            input: "nums = [4, 2, 5, 7], goal: even values at even indices, odd values at odd indices",
-            steps: [
-                { i: 0, num: 4, complement: "index 0 (even) — already even ✓", map: "evenPtr=2, oddPtr=1", found: true, action: "nums[0]=4 is even and sits at even index 0 — leave it" },
-                { i: 1, num: 2, complement: "index 1 (odd) — currently even ✗", map: "evenPtr=2, oddPtr=1", found: false, action: "nums[1]=2 is even but sits at odd index 1 — needs a fix" },
-                { i: 2, num: 5, complement: "advance evenPtr to find a slot", map: "evenPtr=2→? scanning", found: false, action: "Scan forward from evenPtr for the next even-indexed slot holding an odd value" },
-                { i: 3, num: 7, complement: "swap nums[1] and nums[3]", map: "after swap: [4,7,5,2]", found: true, action: "Swap the misplaced even (2) with the odd (7) — both land correctly" },
-            ],
-            output: "Return [4, 7, 5, 2] — evens at even indices, odds at odd indices",
-        },
-    },
-    {
-        title: "Interview Insight",
-        content: "Parity permutation is really a two-pointer partitioning problem wearing a costume. The same \"advance a pointer only through the slots you care about, swap on mismatch\" idea powers Dutch National Flag (sort 0s/1s/2s), moving zeroes to the end, and even quicksort's partition step. Once you see it as \"two independent pointers walking their own lane,\" you stop needing to memorize each variant separately.",
-    },
-    {
-        title: "Key Takeaways",
-        takeaways: [
-            { icon: "✓", text: "Two pointers can walk independent strides (i += 2), not just i and i+1" },
-            { icon: "✓", text: "Swap-on-mismatch avoids allocating a second array" },
-            { icon: "✓", text: "One pass, O(n) time, O(1) space" },
-            { icon: "✓", text: "The same shape solves any binary-partition rearrangement problem" },
-        ],
-    },
-];
-
-const code = `function sortArrayByParity(nums: number[]): number[] {
-  // evenPtr walks even indices, oddPtr walks odd indices
-  let evenPtr = 0;
-  let oddPtr = 1;
-  const n = nums.length;
-
-  while (evenPtr < n && oddPtr < n) {
-    // Advance evenPtr until it finds an odd value sitting in an even slot
-    if (nums[evenPtr] % 2 === 0) {
-      evenPtr += 2;
-      continue;
-    }
-
-    // Advance oddPtr until it finds an even value sitting in an odd slot
-    if (nums[oddPtr] % 2 === 1) {
-      oddPtr += 2;
-      continue;
-    }
-
-    // Both pointers found a misplaced value — swap them
-    [nums[evenPtr], nums[oddPtr]] = [nums[oddPtr], nums[evenPtr]];
-    evenPtr += 2;
-    oddPtr += 2;
-  }
-
-  return nums;
-}`;
-
-export default function ParityPermutationBlog() {
-    const router = useRouter();
-    const [copied, setCopied] = useState(false);
-
-    const copyCode = () => {
-        navigator.clipboard.writeText(code);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
+export default function BlogsPage() {
+    const posts = Object.entries(blogData).map(([slug, b]) => ({ slug, ...b }));
 
     return (
         <main style={{ minHeight: "100vh", background: "#fff", fontFamily: font, color: "#09090b" }}>
-            <div style={{ maxWidth: "760px", margin: "0 auto", padding: "40px 24px 96px" }}>
-
-                {/* Back */}
-                <button
-                    onClick={() => router.push("/blogs")}
-                    style={{
-                        display: "inline-flex", alignItems: "center", gap: "6px",
-                        padding: "7px 14px", borderRadius: "8px",
-                        border: "1px solid #e4e4e7", background: "#fff",
-                        color: "#71717a", fontSize: "13px", fontWeight: 500,
-                        cursor: "pointer", marginBottom: "32px", fontFamily: font,
-                    }}
-                >
-                    ← Back to Blogs
-                </button>
+            <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "48px 24px 96px" }}>
 
                 {/* Header */}
-                <div style={{ marginBottom: "36px" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px", flexWrap: "wrap" }}>
-                        <span style={{
-                            fontSize: "12px", fontWeight: 500, padding: "2px 9px",
-                            borderRadius: "99px", background: "rgba(37,99,235,0.08)",
-                            border: "1px solid rgba(37,99,235,0.2)", color: "#2563eb",
-                            fontFamily: font,
-                        }}>Two Pointers</span>
-                        <span style={{
-                            fontSize: "12px", fontWeight: 500, padding: "2px 9px",
-                            borderRadius: "99px", background: "#f4f4f5",
-                            border: "1px solid #e4e4e7", color: "#52525b",
-                            fontFamily: font,
-                        }}>Jul 2026</span>
-                        <span style={{
-                            fontSize: "12px", fontWeight: 500, padding: "2px 9px",
-                            borderRadius: "99px", background: "#f4f4f5",
-                            border: "1px solid #e4e4e7", color: "#52525b",
-                            fontFamily: font,
-                        }}>6 min read</span>
-                    </div>
-
-                    <h1 style={{
-                        fontSize: "clamp(28px, 4vw, 38px)", fontWeight: 700,
-                        letterSpacing: "-0.6px", color: "#09090b",
-                        margin: "0 0 14px", lineHeight: 1.2, fontFamily: font,
+                <div style={{ marginBottom: "40px" }}>
+                    <p style={{
+                        fontSize: "13px", fontWeight: 500, color: "#6366f1",
+                        textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 10px",
+                        fontFamily: font,
                     }}>
-                        Parity Permutation
+                        Blogs
+                    </p>
+                    <h1 style={{
+                        fontSize: "32px", fontWeight: 600,
+                        color: "#09090b", margin: "0 0 8px",
+                        letterSpacing: "-0.3px", fontFamily: font,
+                    }}>
+                        Notes &amp; Deep Dives
                     </h1>
-                    <p style={{ fontSize: "16px", color: "#71717a", margin: 0, lineHeight: 1.7, fontFamily: font }}>
-                        Rearranging an array so even and odd values fall into place — a two-pointer
-                        pattern that quietly powers several classic interview problems.
+                    <p style={{ fontSize: "15px", color: "#71717a", margin: 0, fontFamily: font }}>
+                        {posts.length} post{posts.length !== 1 ? "s" : ""} · Longer write-ups on patterns, tricks, and interview intuition
                     </p>
                 </div>
 
-                {/* Sections */}
-                {sections.map((s) => (
-                    <section key={s.title} style={{ marginBottom: "36px" }}>
-                        <h2 style={{
-                            fontSize: "18px", fontWeight: 600, color: "#09090b",
-                            margin: "0 0 12px", letterSpacing: "-0.2px", fontFamily: font,
-                        }}>
-                            {s.title}
-                        </h2>
-
-                        {s.content && (
-                            <p style={{ fontSize: "15px", color: "#3f3f46", lineHeight: 1.75, margin: "0 0 12px", fontFamily: font }}>
-                                {s.content}
-                            </p>
-                        )}
-
-                        {s.bullets && (
-                            <ul style={{ margin: 0, paddingLeft: "20px", display: "flex", flexDirection: "column", gap: "8px" }}>
-                                {s.bullets.map((b) => (
-                                    <li key={b} style={{ fontSize: "15px", color: "#3f3f46", lineHeight: 1.65, fontFamily: font }}>
-                                        {b}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-
-                        {s.code && (
-                            <pre style={{
-                                background: "#fafafa", border: "1px solid #e4e4e7",
-                                borderRadius: "10px", padding: "14px 16px",
-                                fontSize: "13px", fontFamily: "monospace",
-                                color: "#18181b", overflowX: "auto", margin: "0 0 12px",
-                            }}>
-                                {s.code}
-                            </pre>
-                        )}
-
-                        {s.after && (
-                            <p style={{ fontSize: "15px", color: "#3f3f46", lineHeight: 1.75, margin: 0, fontFamily: font }}>
-                                {s.after}
-                            </p>
-                        )}
-
-                        {s.walkthrough && (
-                            <div style={{
-                                border: "1px solid #e4e4e7", borderRadius: "10px",
-                                overflow: "hidden", marginTop: "8px",
-                            }}>
-                                <div style={{
-                                    padding: "10px 14px", background: "#fafafa",
-                                    borderBottom: "1px solid #e4e4e7",
-                                    fontSize: "13px", fontFamily: "monospace", color: "#52525b",
-                                }}>
-                                    Input: {s.walkthrough.input}
-                                </div>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
-                                    {s.walkthrough.steps.map((step, idx) => (
-                                        <div key={idx} style={{
-                                            display: "flex", gap: "12px", alignItems: "flex-start",
-                                            padding: "10px 14px",
-                                            borderBottom: idx < s.walkthrough.steps.length - 1 ? "1px solid #f4f4f5" : "none",
-                                        }}>
-                                            <span style={{
-                                                fontSize: "12px", color: "#a1a1aa", fontFamily: "monospace",
-                                                minWidth: "18px", paddingTop: "2px",
-                                            }}>
-                                                {step.i}
-                                            </span>
-                                            <div style={{ flex: 1 }}>
-                                                <div style={{ fontSize: "13px", fontFamily: "monospace", color: "#18181b", marginBottom: "2px" }}>
-                                                    value={step.num} · {step.complement}
-                                                </div>
-                                                <div style={{ fontSize: "13px", color: step.found ? "#16a34a" : "#71717a", fontFamily: font }}>
-                                                    {step.action}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div style={{
-                                    padding: "10px 14px", background: "rgba(22,163,74,0.06)",
-                                    borderTop: "1px solid #e4e4e7",
-                                    fontSize: "13px", fontFamily: "monospace", color: "#16a34a", fontWeight: 600,
-                                }}>
-                                    {s.walkthrough.output}
-                                </div>
-                            </div>
-                        )}
-
-                        {s.takeaways && (
-                            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                                {s.takeaways.map((t) => (
-                                    <div key={t.text} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                                        <span style={{ color: "#16a34a", fontSize: "14px", fontWeight: 700, lineHeight: 1.6 }}>{t.icon}</span>
-                                        <span style={{ fontSize: "15px", color: "#3f3f46", lineHeight: 1.65, fontFamily: font }}>{t.text}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </section>
-                ))}
-
-                {/* Full solution code */}
-                <section style={{ marginBottom: "12px" }}>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
-                        <h2 style={{
-                            fontSize: "18px", fontWeight: 600, color: "#09090b",
-                            margin: 0, letterSpacing: "-0.2px", fontFamily: font,
-                        }}>
-                            Full Solution
-                        </h2>
-                        <button
-                            onClick={copyCode}
-                            style={{
-                                padding: "6px 12px", borderRadius: "8px",
-                                border: "1px solid #e4e4e7", background: "#fff",
-                                color: "#3f3f46", fontSize: "12px", fontWeight: 500,
-                                cursor: "pointer", fontFamily: font,
-                            }}
-                        >
-                            {copied ? "Copied ✓" : "Copy code"}
-                        </button>
-                    </div>
-                    <pre style={{
-                        background: "#0f172a", border: "1px solid #e4e4e7",
-                        borderRadius: "10px", padding: "18px 20px",
-                        fontSize: "13px", fontFamily: "monospace",
-                        color: "#e2e8f0", overflowX: "auto", lineHeight: 1.6,
+                {/* Grid */}
+                {posts.length === 0 ? (
+                    <div style={{
+                        textAlign: "center", padding: "60px 0",
+                        color: "#a1a1aa", fontSize: "14px", fontFamily: font,
+                        border: "1px dashed #e4e4e7", borderRadius: "12px",
                     }}>
-                        {code}
-                    </pre>
-                </section>
+                        No posts yet — check back soon.
+                    </div>
+                ) : (
+                    <div style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+                        gap: "16px",
+                    }}>
+                        {posts.map((b) => (
+                            <Link
+                                key={b.slug}
+                                href={`/blogs/${b.slug}`}
+                                style={{
+                                    display: "block",
+                                    padding: "24px",
+                                    borderRadius: "12px",
+                                    border: "1px solid #e4e4e7",
+                                    background: "#fff",
+                                    textDecoration: "none",
+                                    color: "inherit",
+                                    transition: "all 0.15s ease",
+                                    boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                                    fontFamily: font,
+                                }}
+                                onMouseEnter={e => {
+                                    const el = e.currentTarget as HTMLAnchorElement;
+                                    el.style.borderColor = "#a1a1aa";
+                                    el.style.transform = "translateY(-2px)";
+                                    el.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)";
+                                }}
+                                onMouseLeave={e => {
+                                    const el = e.currentTarget as HTMLAnchorElement;
+                                    el.style.borderColor = "#e4e4e7";
+                                    el.style.transform = "translateY(0)";
+                                    el.style.boxShadow = "0 1px 2px rgba(0,0,0,0.04)";
+                                }}
+                            >
+                                {/* Top row */}
+                                <div style={{
+                                    display: "flex", alignItems: "center",
+                                    justifyContent: "space-between", marginBottom: "16px",
+                                }}>
+                                    <div style={{
+                                        width: "34px", height: "34px", borderRadius: "8px",
+                                        border: "1px solid #e4e4e7", background: "#fafafa",
+                                        display: "flex", alignItems: "center", justifyContent: "center",
+                                        fontSize: "13px", color: "#71717a", fontWeight: 500,
+                                        fontFamily: "monospace",
+                                    }}>{"§"}</div>
+
+                                    <span style={{
+                                        fontSize: "12px", fontWeight: 400,
+                                        padding: "2px 9px", borderRadius: "99px",
+                                        background: "#f4f4f5", border: "1px solid #e4e4e7",
+                                        color: "#52525b", fontFamily: font,
+                                    }}>
+                                        {b.tag}
+                                    </span>
+                                </div>
+
+                                {/* Title */}
+                                <h3 style={{
+                                    fontSize: "17px", fontWeight: 600,
+                                    color: "#09090b", margin: "0 0 8px",
+                                    letterSpacing: "-0.1px", fontFamily: font,
+                                }}>
+                                    {b.title}
+                                </h3>
+
+                                {/* Excerpt */}
+                                <p style={{
+                                    fontSize: "14px", color: "#71717a",
+                                    margin: "0 0 20px", lineHeight: 1.65,
+                                    fontFamily: font, fontWeight: 400,
+                                }}>
+                                    {b.excerpt}
+                                </p>
+
+                                {/* Footer */}
+                                <div style={{
+                                    display: "flex", alignItems: "center",
+                                    justifyContent: "space-between",
+                                    paddingTop: "14px",
+                                    borderTop: "1px solid #f4f4f5",
+                                }}>
+                                    <span style={{
+                                        fontSize: "13px", color: "#a1a1aa",
+                                        fontFamily: font, fontWeight: 400,
+                                    }}>
+                                        {b.date} · {b.readTime}
+                                    </span>
+                                    <span style={{
+                                        fontSize: "13px", fontWeight: 500,
+                                        color: "#3f3f46", fontFamily: font,
+                                    }}>
+                                        Read →
+                                    </span>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )}
             </div>
         </main>
     );
