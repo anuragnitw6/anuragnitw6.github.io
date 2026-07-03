@@ -256,6 +256,8 @@ const patterns = [
 ];
 
 const problems = [
+  { name: "Divide array in sets of k consecutive numbers", difficulty: "Medium", color: "#d97706", slug: "/problems/divide-array-in-sets-of-k-consecutive-numbers", internal: true },
+  { name: "Hand of Straights", difficulty: "Medium", color: "#d97706", slug: "/problems/hand-of-straights", internal: true },
   { name: "Two Sum", difficulty: "Easy", color: "#16a34a", slug: "/problems/two-sum", internal: true },
   { name: "Group Anagrams", difficulty: "Medium", color: "#d97706", slug: "/problems/group-anagrams", internal: true },
   { name: "Longest Substring Without Repeating Characters", difficulty: "Medium", color: "#d97706", slug: "/problems/longest-substring-without-repeating-characters", internal: false },
@@ -264,7 +266,7 @@ const problems = [
 ];
 
 const stats = [
-  { label: "Problems Solved", value: "16", icon: "#" },
+  { label: "Problems Solved", value: "19", icon: "#" },
   { label: "Patterns Learned", value: "4", icon: "#" },
   // { label: "Personal Notes", value: "100%", icon: "%" },
 ];

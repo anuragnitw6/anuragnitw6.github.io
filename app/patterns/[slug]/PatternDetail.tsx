@@ -822,6 +822,8 @@ function groupAnagrams(strs: string[]): string[][] {
   return Array.from(map.values());
 }`,
         problems: [
+            { name: "Divide array in sets of k consecutive numbers", difficulty: "Medium", link: "/problems/divide-array-in-sets-of-k-consecutive-numbers" },
+            { name: "Hand of Straights", difficulty: "Medium", link: "/problems/hand-of-straights" },
             { name: "Two Sum", difficulty: "Easy", link: "/problems/two-sum" },
             { name: "Group Anagrams", difficulty: "Medium", link: "/problems/group-anagrams" },
             { name: "Top K Frequent Elements", difficulty: "Medium", link: "/problems/top-k-frequent-elements" },
